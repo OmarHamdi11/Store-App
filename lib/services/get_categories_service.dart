@@ -4,6 +4,7 @@ import 'package:storeapp/models/product_model.dart';
 class CategoriesService {
   Future<List<ProductModel>> getCategoriesProducts(String categoryName) async {
     List<dynamic> data = await Api()
+        // ignore: missing_required_param
         .get(url: 'https://fakestoreapi.com/products/category/$categoryName');
 
     List<ProductModel> productsList = [];

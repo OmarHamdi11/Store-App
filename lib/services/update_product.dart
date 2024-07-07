@@ -1,8 +1,8 @@
 import 'package:storeapp/helper/api.dart';
 import 'package:storeapp/models/product_model.dart';
 
-class AddProduct {
-  Future<ProductModel> addProduct(
+class UpdateProduct {
+  Future<ProductModel> updateProduct(
       {required String title,
       required String price,
       required String desc,
@@ -10,7 +10,7 @@ class AddProduct {
       required String category}) async {
     Map<String, dynamic> data =
         // ignore: missing_required_param
-        await Api().post(url: 'https://fakestoreapi.com/products', body: {
+        await Api().put(url: 'https://fakestoreapi.com/products', body: {
       'title': title,
       'price': price,
       'description': desc,
