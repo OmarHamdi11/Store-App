@@ -73,14 +73,14 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                 const SizedBox(height: 50),
                 CustomButton(
                   txt: 'UpDate',
-                  ontap: () {
+                  ontap: () async {
                     isLoading = true;
                     setState(() {});
                     try {
-                      upDateProduct(product);
+                      await upDateProduct(product);
                       showSnakBarMessage(context, 'Success');
                     } catch (e) {
-                      print(e.toString());
+                      showSnakBarMessage(context, e.toString());
                     }
                     isLoading = false;
                     setState(() {});
@@ -94,12 +94,13 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
     );
   }
 
-  void upDateProduct(ProductModel product) {
-    UpdateProductService().updateProduct(
-        title: productName!,
-        price: price!,
-        desc: desc!,
-        image: image!,
+  Future<void> upDateProduct(ProductModel product) async {
+    await UpdateProductService().updateProduct(
+        id: product.id,
+        title: productName == null ? product.title : productName!,
+        price: price == null ? product.price.toString() : price!,
+        desc: desc == null ? product.description : desc!,
+        image: image == null ? product.image : image!,
         category: product.category);
   }
 }

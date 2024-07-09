@@ -60,6 +60,8 @@ class Api {
       });
     }
 
+    print('url = $url , body = $body , token = $token');
+
     http.Response response = await http.put(
       Uri.parse(url),
       body: body,
@@ -67,6 +69,7 @@ class Api {
     );
     if (response.statusCode == 200) {
       Map<String, dynamic> data = jsonDecode(response.body);
+      print('data = $data');
       return data;
     } else {
       throw Exception(
